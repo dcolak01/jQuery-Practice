@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Art Gallery</title>
+</head>
+
+<body>
+
+<div id = 'info'>
+</div>
+
+<div id = "thumbnails">
+	<img id='image0' src='' height = 100px>
+	<img id='image1' src='' height = 100px>
+	<img id='image2' src='' height = 100px>
+	<img id='image3' src='' height = 100px>
+	<img id='image4' src='' height = 100px>
+</div>
+
+<div class = "large">
+	<img id='image0-l' src='' height= 400px>
+	<img id='image1-l' src='' height = 600px>
+	<img id='image2-l' src='' height = 600px>
+	<img id='image3-l' src='' height = 600px>
+	<img id='image4-l' src='' height = 600px>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script language="Javascript" type="text/javascript">
+
+    var artworks = new Array(5);
+
+    artworks[0] = ["Guernica", 200, "guernica.jpg"];
+    artworks[1] = ["Les Demoiselles d'Avignon", 300, "davignon.jpg"];
+    artworks[2] = ["The Weeping Woman", 250, "weeping.jpg"];
+    artworks[3] = ["The Old Guitarist", 400, "guitarist.jpg"];
+    artworks[4] = ["Le Reve", 150, "reve.jpg"];
+
+$(document).ready(function(){
+
+    for (i = 0 ; i < 5; i++){
+        $("#image" + i).attr("src" , artworks[i][2]);
+        $("#image" + i + "-l").attr("src" , artworks[i][2]);
+        $("#image" + i + "-l").hide();
+
+    }
+
+    $.each(artworks, function(i, val){
+        $("#image"+ i).hover(function(){
+            $("#image" + i + "-l").fadeIn()
+            }, function(){
+            $("#image" + i + "-l").hide();
+            }
+        );
+
+    	$("#image" + i).click(function(){
+    		$('#info').empty();
+    		$('#info').append("<p>Name of the painting is " + artworks[i][0] + ", and it is worth " + artworks[i][1] + "</p>");
+    		$('#info').fadeIn();
+    		$('#info').delay(5000).fadeOut();
+    	});
+	});
+});
+
+</script>
+</body>
+</html>
